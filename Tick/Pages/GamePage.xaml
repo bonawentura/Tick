@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:core="clr-namespace:Tick.Core"
+             x:Class="Tick.Pages.GamePage">
+    <ContentPage.Resources>
+        <core:MainGame x:Key="MainGame" />
+    </ContentPage.Resources>
+    <VerticalStackLayout Margin="20">
+        <GraphicsView
+            Drawable="{StaticResource MainGame}" HeightRequest="500" WidthRequest="400" x:Name="MainGameView">
+            <GraphicsView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
+            </GraphicsView.GestureRecognizers>
+        </GraphicsView>
+    </VerticalStackLayout>
+</ContentPage>
