@@ -9,7 +9,7 @@ public class InputReceiver : Component
 
     public InputReceiver()
     {
-        _boxCollider = new Collider(new RectF(new PointF(0,0), new SizeF(10)));
+        _boxCollider = new BoxCollider(new RectF(new PointF(0, 0), new SizeF(10)));
     }
 
     public void InitializeCollider()
@@ -38,40 +38,56 @@ public class InputReceiver : Component
  * so it can be transformed to check for collisions in world space
  * 
  */
-public class Collider : Component
+
+public interface ICollider
 {
-    private readonly PointF[] _points = new PointF[4];
-    private Rect _shape;
+    bool HasCollision(PointF target);
+}
+
+public abstract class Collider : Component, ICollider
+{
+    // private Rect _shape;
+
+    protected IList<PointF> ColliderShapePoints { get; init; } = new List<PointF>();
 
 
-    public Collider(RectF shape)
+    protected Matrix3x2 AncestorsTransform => Owner?.Transform.GetWorldTransform() ?? Matrix3x2.Identity;
+    // protected Matrix3x2? AncestorsInverseTransform => Owner?.Transform.GetInverseWorldTransform();
+
+
+    public abstract bool HasCollision(PointF target);
+}
+
+public class BoxCollider : Collider
+{
+    public BoxCollider(RectF box)
     {
-        _shape = shape;
-        var (x, y, w, h) = shape;
-        _points[0] = new PointF(x, y);
-        _points[1] = new PointF(x + w, y);
-        _points[2] = new PointF(x + w, y + h);
-        _points[3] = new PointF(x, y + h);
+        ColliderShapePoints = SetupShape(box);
     }
 
-    private Matrix3x2? AncestorsTransform => Owner?.Transform.GetWorldTransform();
-    private Matrix3x2? AncestorsInverseTransform => Owner?.Transform.GetInverseWorldTransform();
+    public override bool HasCollision(PointF target)
+    {
+        var shape = GetCurrentShape();
+        return shape.HasValue && shape.Value.Contains(target);
+    }
+
+    private List<PointF> SetupShape(RectF box)
+    {
+        var points = new List<PointF>
+        {
+            new(box.Left, box.Top),
+            new(box.Right, box.Top),
+            new(box.Right, box.Bottom),
+            new(box.Left, box.Bottom)
+        };
+        return points;
+    }
 
     private RectF? GetCurrentShape()
     {
-        var transform = AncestorsTransform ?? Matrix3x2.Identity;
-        var transformedPoints = _points.Select(x => x.TransformBy(transform)).ToArray();
+        var transform = AncestorsTransform;
+        var transformedPoints = ColliderShapePoints.Select(x => x.TransformBy(transform)).ToArray();
         var result = RectF.FromLTRB(transformedPoints[0].X, transformedPoints[0].Y, transformedPoints[2].X, transformedPoints[2].Y);
         return result;
-    }
-
-
-    public bool HasCollision(PointF target)
-    {
-        var transformedShape = GetCurrentShape();
-        if (!transformedShape.HasValue) return false;
-
-        var hasCollision = transformedShape.Value.Contains(target);
-        return hasCollision;
     }
 }
