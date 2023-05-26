@@ -1,0 +1,33 @@
+
+/'
+
+jak przekazac scene do renderowania?
+
+scena ma GameObjects
+
+R -> SM.GameObjects
+R w kazdym cyklu renderowania powinien dostac aktualny canvas i dirtyRect
+
+mozesz dodac Schedulera, ktory bedzie wolal Render tylko jesli ma cos w kolejce
+MB moze dodawac rzeczy na Schedulera
+
+class Renderer {
+    
+    OnRenderMessage( gameObjects) {
+                        ^event arg has a ref to objects 
+        gameObjects.ForEach(x => x.Render(canvas, dirtyRect))
+    }
+}
+
+## jak wyglada glowna petla?
+
+MainGame
+
+
+'/
+
+
+@startuml renderer
+
+
+@enduml
