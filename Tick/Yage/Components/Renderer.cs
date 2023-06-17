@@ -1,4 +1,4 @@
-﻿namespace Tick.Engine.Components;
+﻿namespace Tick.Yage.Components;
 
 public abstract class Renderer : Component
 {

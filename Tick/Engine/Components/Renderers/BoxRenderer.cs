@@ -1,4 +1,6 @@
 ﻿using System.Numerics;
+using Tick.Yage;
+using Tick.Yage.Components;
 
 namespace Tick.Engine.Components.Renderers;
 

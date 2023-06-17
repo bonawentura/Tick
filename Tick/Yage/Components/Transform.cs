@@ -1,14 +1,15 @@
 ﻿using System.Numerics;
 
-namespace Tick.Engine.Components;
+namespace Tick.Yage.Components;
 
 public class Transform : Component
 {
     public Matrix3x2 LocalPosition { get; set; } = Matrix3x2.Identity;
     public Matrix3x2 LocalScale { get; set; } = Matrix3x2.Identity;
-    public Matrix3x2 GlobalPosition { get; set; } = Matrix3x2.Identity;
-    public Matrix3x2 GlobalScale { get; set; } = Matrix3x2.Identity;
-
+    // public Matrix3x2 GlobalPosition { get; set; } = Matrix3x2.Identity;
+    // public Matrix3x2 GlobalScale { get; set; } = Matrix3x2.Identity;
+    public PointF LocalPositionPointF => (new PointF(0, 0)).TransformBy(LocalPosition);
+    
     /**
      * recursive call on each paint. ugly.
      */

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tick", "Tick\Tick.csproj", "{BCE83375-9C9E-437B-992F-93D810D1A361}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic", "Tic\Tic.csproj", "{A494F831-A154-47BE-A42D-B9F8DA4ED92D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +18,10 @@ Global
 		{BCE83375-9C9E-437B-992F-93D810D1A361}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{BCE83375-9C9E-437B-992F-93D810D1A361}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCE83375-9C9E-437B-992F-93D810D1A361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A494F831-A154-47BE-A42D-B9F8DA4ED92D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A494F831-A154-47BE-A42D-B9F8DA4ED92D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A494F831-A154-47BE-A42D-B9F8DA4ED92D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A494F831-A154-47BE-A42D-B9F8DA4ED92D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,7 @@
-﻿namespace Tick.Engine.Components.Renderers;
+﻿using Tick.Yage;
+using Tick.Yage.Components;
+
+namespace Tick.Engine.Components.Renderers;
 
 public class GridRenderer : Renderer
 {
